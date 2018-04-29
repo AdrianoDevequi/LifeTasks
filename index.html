@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" ng-app="lifeTask">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>LifeTasks</title>
-
+	<title>lifetasks</title>
 	<style>
 		body{
-			
 			position: relative;
 			min-height: 100vh;
 			padding: 0;
@@ -37,10 +35,10 @@
 <script src="node_modules/ng-redux/umd/ng-redux.min.js"></script>
 <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 <!-- Angular App -->
-<script src="components/lifetask-app/app.js"></script>
-<!-- lifeTasks App -->
-<script src="components/lifetask-app/lifetask-app.js"></script>
+<script src="components/lifetask-app/app.module.js"></script>
+<script src="components/lifetask-app/app.redux.js"></script>
 
-
+<!-- lifetask App -->
+<script src="components/lifetask-app/lifetask-app.component.js"></script>
 </body>
 </html>
