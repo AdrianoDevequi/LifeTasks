@@ -7,6 +7,7 @@ const uglify = require('gulp-uglify');
 const htmlmin = require('gulp-htmlmin');
 const npmFiles = require('gulp-npm-files');
 const cleanCss = require('gulp-clean-css');
+const webserver = require('gulp-webserver');
 const runSequence = require('run-sequence');
 
 function isFixed(file) {
@@ -23,7 +24,7 @@ gulp.task('npm-dependencies', ()=>
 );
 
 gulp.task('compress-js', () =>
-	gulp.src('./components/**/*.js', { base: '.' })
+	gulp.src(['/src/*.js','./components/**/*.js'], { base: '.' })
 	.pipe(babel({ presets: ['env'] }))
 	.pipe(uglify())
 	.pipe(gulp.dest('./build'))
@@ -42,7 +43,7 @@ gulp.task('compress-html', () =>
 )
 
 gulp.task('lint-js', () =>
-	gulp.src('./components/**/*.js', { base: '.' })
+	gulp.src(['./src/*.js','./components/**/*.js'], { base: '.' })
 	.pipe(eslint({ fix: true }))
 	.pipe(eslint.format())
 	.pipe(gulpIf(isFixed, gulp.dest('.')))
@@ -61,5 +62,10 @@ gulp.task('default', () =>
 );
 
 gulp.task('watch-js', () => 
-	gulp.watch('.components/**/*.js', ['lint-js'])
+	gulp.watch(['./src/*.js','./components/**/*.js'], ['lint-js'])
+);
+
+gulp.task('server-dev', () =>
+	gulp.src('.')
+		.pipe(webserver({ livereload: true, open: true }))
 );

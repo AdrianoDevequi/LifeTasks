@@ -1,16 +1,16 @@
 /* global angular, importStyle */
 
-importStyle('components/lifetask-app/lifetask-app.css', { preload: true });
+importStyle('components/lifetask-login/lifetask-login.css', { preload: true });
 
-class LifetaskApp {
+class LifetaskLogin {
 	constructor(){
-		this.templateUrl = 'components/lifetask-app/lifetask-app.html';
+		this.templateUrl = 'components/lifetask-login/lifetask-login.html';
 		this.bindings = {};
-		this.controller = LifetaskAppController;
+		this.controller = LifetaskLoginController;
 	}
 }
 
-class LifetaskAppController {
+class LifetaskLoginController {
 	static get $inject() {
 		return ['$element','$ngRedux'];
 	}
@@ -50,5 +50,5 @@ class LifetaskAppController {
 /* Observes */
 /* */
 }
-angular.module('lifeTask').component('lifetaskApp', new LifetaskApp());
+angular.module('lifeTask').component('lifetaskLogin', new LifetaskLogin());
 

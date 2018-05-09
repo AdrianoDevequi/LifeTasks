@@ -6,39 +6,50 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>lifetasks</title>
 	<style>
+		:root {
+			--app-color: rgb(195, 34, 34);
+			--app-text-color: rgb(255, 255, 255);
+		}
 		body{
 			position: relative;
 			min-height: 100vh;
 			padding: 0;
 			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+			letter-spacing: 0.1rem;
 		}
 		lifetask-app[unresolved]{
 			display: block;
 			min-height: 100vh;
 			min-width: 100vw;
-			background: rgb(195, 34, 34);
+			background: var(--app-color);
 		}
 	</style>
 </head>
 <body>
 	<lifetask-app unresolved></lifetask-app>
-<!-- Dependences -->
-<script src="node_modules/redux/dist/redux.js"></script>
-<!-- Angular  -->
-<script src="node_modules/angular/angular.min.js"></script>
-<!-- Angular injections -->
-<script src="node_modules/angular-aria/angular-aria.min.js"></script>
-<script src="node_modules/angular-animate/angular-animate.min.js"></script>
-<script src="node_modules/angular-resource/angular-resource.min.js"></script>
-<script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="node_modules/angular-messages/angular-messages.min.js"></script>
-<script src="node_modules/ng-redux/umd/ng-redux.min.js"></script>
-<script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
-<!-- Angular App -->
-<script src="components/lifetask-app/app.module.js"></script>
-<script src="components/lifetask-app/app.redux.js"></script>
 
-<!-- lifetask App -->
-<script src="components/lifetask-app/lifetask-app.component.js"></script>
+	<!--Polyfills  -->
+	<script src="src/importStyle.js"></script>
+	<!-- Dependences -->
+	<script src="node_modules/redux/dist/redux.js"></script>
+	<!-- Angular  -->
+	<script src="node_modules/angular/angular.min.js"></script>
+	<!-- Angular injections -->
+	<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="node_modules/angular-resource/angular-resource.min.js"></script>
+	<script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.min.js"></script>
+	<script src="node_modules/ng-redux/umd/ng-redux.min.js"></script>
+	<script src="node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
+	<script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+	<!-- Angular App -->
+	<script src="src/app.module.js"></script>
+	<script src="src/app.redux.js"></script>
+	<script src="src/app.routes.js"></script>
+
+	<!-- lifetask App -->
+	<script src="components/lifetask-app/lifetask-app.component.js"></script>
 </body>
 </html>

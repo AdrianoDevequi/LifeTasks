@@ -1,3 +1,5 @@
+/* global angular */
+
 class lifetaskApp {
 	constructor(){
 		this.templateUrl = 'components/lifetask-app/lisfetask-app.html';
