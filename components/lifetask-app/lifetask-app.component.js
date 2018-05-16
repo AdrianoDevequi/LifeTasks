@@ -1,4 +1,4 @@
-/* global angular, importStyle */
+/* global angular, importStyle, firebase */
 
 importStyle('components/lifetask-app/lifetask-app.css', { preload: true });
 
@@ -7,6 +7,7 @@ class LifetaskApp {
 		this.templateUrl = 'components/lifetask-app/lifetask-app.html';
 		this.bindings = {};
 		this.controller = LifetaskAppController;
+		
 	}
 }
 
@@ -25,6 +26,7 @@ class LifetaskAppController {
 				reward: behavior.reward
 			})
 		)(this);
+		this.provider = new firebase.auth.GoogleAuthProvider();
 	}
 
 
@@ -36,9 +38,28 @@ class LifetaskAppController {
 	$onDestroy() {
 		this.__lifetaskBehavior();
 	}
-/* */
+	/* */
 
-/* Public */
+	/* Public */
+	login() {
+		firebase.auth().signInWithPopup(this.provider).then(result => {
+			if(result.credential){
+				this.$ngRedux.dispatch({ type: 'LOGIN', 
+					data: {
+						name: result.user.displayName,
+						email: result.user.email,
+						id: result.user.uid
+					}
+					
+				});
+				this.$.setAttribute('authorized', '');
+			}
+
+		}).catch(error => {
+			console.warn(error);
+		});
+
+	}
 /* */
 
 /* Private */

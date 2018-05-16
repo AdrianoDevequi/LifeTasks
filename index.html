@@ -28,7 +28,22 @@
 </head>
 <body>
 	<lifetask-app unresolved></lifetask-app>
-
+	<!-- Firebase Project-->
+	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-auth.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyDTlL9HdCpfwcu1yY9dCaBDhtNKumG9kk8",
+		authDomain: "ad-life-task.firebaseapp.com",
+		databaseURL: "https://ad-life-task.firebaseio.com",
+		projectId: "ad-life-task",
+		storageBucket: "ad-life-task.appspot.com",
+		messagingSenderId: "530685413165"
+	  };
+	  firebase.initializeApp(config);
+	</script>
 	<!--Polyfills  -->
 	<script src="src/importStyle.js"></script>
 	<!-- Dependences -->
