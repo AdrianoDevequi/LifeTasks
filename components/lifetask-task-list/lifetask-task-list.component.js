@@ -19,11 +19,8 @@ class LifetaskTaskListController {
 		Object.assign(this, { $: $element[0], $ngRedux });
 
 		this.__lifetaskBehavior = $ngRedux.connect(behavior =>
-			Object({
-				session: behavior.session,
-				task: behavior.task,
-				reward: behavior.reward
-			})
+			Object({	
+				taskList: behavior.task.list			})
 		)(this);
 	}
 
