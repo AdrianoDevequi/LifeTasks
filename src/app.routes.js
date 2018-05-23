@@ -25,7 +25,7 @@ angular.module('lifeTask').config([
 			})
 			.state( 'rewardList', {
 				url: '/rewardList',
-				template: '<lifetask-task-reward-list></lifetask-reward-list>',
+				template: '<lifetask-reward-list></lifetask-reward-list>',
 				lazyLoad: $transition$ =>
 					$transition$.injector()
 						.get('$ocLazyLoad')
@@ -33,7 +33,7 @@ angular.module('lifeTask').config([
 			})
 			.state( 'rewardCrud', {
 				url: '/rewardCrud',
-				template: '<lifetask-task-reward-crud></lifetask-reward-crud>',
+				template: '<lifetask-reward-crud></lifetask-reward-crud>',
 				lazyLoad: $transition$ =>
 					$transition$.injector()
 						.get('$ocLazyLoad')

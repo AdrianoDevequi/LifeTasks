@@ -53,7 +53,7 @@ angular.module('lifeTask').config([
 
 		class RewardReducerState {
 			constructor() {
-				this.list = [];
+				this.list = [{title: 'titulo', description: 'Descrição', value: 10}];
 			}
 		}
 		function rewardReducer(state, action) {
