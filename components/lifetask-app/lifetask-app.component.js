@@ -13,15 +13,16 @@ class LifetaskApp {
 
 class LifetaskAppController {
 	static get $inject() {
-		return ['$element','$ngRedux'];
+		return ['$element','$ngRedux','$state', '$scope'];
 	}
 
-	constructor($element, $ngRedux) {
-		Object.assign(this, { $: $element[0], $ngRedux });
+	constructor($element, $ngRedux, $state, $scope) {
+		Object.assign(this, { $: $element[0], $ngRedux, $state, $scope });
 
 		this.__lifetaskBehavior = $ngRedux.connect(behavior =>
 			Object({
-				userId: behavior.session.id
+				userId: behavior.session.id,
+				userCoins: behavior.session.coins
 			})
 		)(this);
 		this.provider = new firebase.auth.GoogleAuthProvider();
@@ -30,9 +31,16 @@ class LifetaskAppController {
 
 	/* Lifecycle */
 	$onInit() { 
+
+
 		if(this.userId)
 			this.$.setAttribute('authorized', '');
 		this.$.removeAttribute('unresolved');
+	
+		this.$scope.$watch(() => 
+			this.$state.$current,
+		this.__stateChanged.bind(this));
+		
 	}
 
 	$onDestroy() {
@@ -60,15 +68,36 @@ class LifetaskAppController {
 		});
 
 	}
-/* */
 
-/* Private */
-/* */
+	changeView(evt) {
 
-/* Protected */
-/* */
+		this.$state.go(evt.target.dataset.view);
+	}
+	/* */
 
-/* Observes */
+	/* Private */
+	/* */
+
+	/* Protected */
+	/* */
+
+	/* Observes */
+	__stateChanged(newValue){
+		if (newValue){
+			const currentState = newValue.name;
+
+			this.$.querySelectorAll('#appFooter div')
+				.forEach(node => {
+					if(currentState.includes('task') && node.dataset.view.includes('task'))
+						node.setAttribute('active', '');
+					else if (currentState.includes('reward') && node.dataset.view.includes('reward'))
+						node.setAttribute('active', '');
+					else
+						node.removeAttribute('active');
+				});
+		
+		}
+	}
 /* */
 }
 angular.module('lifeTask').component('lifetaskApp', new LifetaskApp());

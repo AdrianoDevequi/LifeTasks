@@ -12,11 +12,11 @@ class LifetaskTaskList {
 
 class LifetaskTaskListController {
 	static get $inject() {
-		return ['$element', '$ngRedux'];
+		return ['$element', '$ngRedux', '$state'];
 	}
 
-	constructor($element, $ngRedux) {
-		Object.assign(this, { $: $element[0], $ngRedux });
+	constructor($element, $ngRedux, $state) {
+		Object.assign(this, { $: $element[0], $ngRedux, $state });
 
 		this.__lifetaskBehavior = $ngRedux.connect(behavior =>
 			Object({	
@@ -35,7 +35,14 @@ class LifetaskTaskListController {
 	}
 	/* */
 	/* Public */
+	editTask(task){
+		this.$ngRedux.dispatch({type: 'TASK_CRUD', data: {task}});
+		this.$state.go('taskCrud');
+	}
 
+	finishTask(task){
+		this.$ngRedux.dispatch({type : 'FINISH_TASK', data: { task }});
+	}
 	/* */
 
 	/* Private */
