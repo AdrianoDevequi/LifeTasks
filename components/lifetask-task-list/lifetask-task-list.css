@@ -20,8 +20,8 @@ lifetask-task-list{
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.33)
 	
 }
-.lifetask-task-card:last-child{
-	margin-bottom: 16px;
+.lifetask-task-card.last-card{
+	margin: 16px 16px 72px 16px;
 }
 .lifetask-task-card .lifetask-task-card-header{
 	grid-area: cardHeader;
@@ -45,4 +45,19 @@ lifetask-task-list{
 	justify-content: space-between;
 	border-top: solid 1px rgb(230, 230, 230);
 	padding: 0 16px;
+}
+
+#lifetask-task-fab-add {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 64px;
+	right: 16px;
+	height: 48px;
+	width: 48px;
+	border-radius: 50%;
+	background-color: var(--app-color);
+	color: var(--app-text-color);
+	box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.66);
 }

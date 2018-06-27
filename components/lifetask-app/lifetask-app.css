@@ -9,14 +9,23 @@ lifetask-app{
 	width: 100%;
 	min-height: 100vh;
 }
+lifetask-app #appHeaderCoin{
+	display: flex;
+	align-items: center;
+}
+lifetask-app #appHeaderCoin i{
+	margin-left: 2px;
+	font-size: 22px; 
+}
 lifetask-app #appHeader {
 	grid-area: appHeader;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 0 16px;
 	position: fixed;
 	height: 64px;
-	width: 100vw;
+	width: calc(100vw - 32px);
 	background-color: var(--app-color);
 	box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.4); 
 	color: var(--app-text-color);
@@ -43,6 +52,9 @@ lifetask-app #appFooter div{
 	height: 100%;
 	width: 50%;
 }
+lifetask-app #appFooter div *{
+	pointer-events: none;
+}
 lifetask-app #appFooter div[active]{
 	color: var(--app-text-color);
 	background-color: var(--app-color);
@@ -67,6 +79,9 @@ lifetask-app[authorized] #loginContent {
 }
 
 lifetask-app button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding:8px;
 	border:0;
 	border-radius: 4px;
@@ -75,4 +90,15 @@ lifetask-app button {
 	color: var(--app-text-color);
 	background-color: var(--app-color);
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, .32)
+}
+lifetask-app [ng-click],
+lifetask-app [ng-click] * {
+	cursor: pointer;
+}
+
+lifetask-app button.disable,
+lifetask-app button[disabled] {
+	color: #555;
+	background-color: rgb(230, 230, 230);
+	pointer-events: none;
 }
