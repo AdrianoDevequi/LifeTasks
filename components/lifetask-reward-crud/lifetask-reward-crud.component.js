@@ -12,17 +12,18 @@ class LifetaskRewardCrud {
 
 class LifetaskRewardCrudController {
 	static get $inject() {
-		return ['$element', '$ngRedux'];
+		return ['$element', '$ngRedux', '$state'];
 	}
 
-	constructor($element, $ngRedux) {
-		Object.assign(this, { $: $element[0], $ngRedux });
+	constructor($element, $ngRedux, $state) {
+		Object.assign(this, { $: $element[0], $ngRedux, $state });
 
 		this.__lifetaskBehavior = $ngRedux.connect(behavior =>
 			Object({
-				session: behavior.session,
-				task: behavior.task,
-				reward: behavior.reward
+				id: behavior.reward.reward.id,
+				title:behavior.reward.reward.title,
+				description:behavior.reward.reward.description,
+				value:behavior.reward.reward.value
 			})
 		)(this);
 	}
@@ -30,7 +31,8 @@ class LifetaskRewardCrudController {
 
 	/* Lifecycle */
 	$onInit() {
-		
+		if(this.id === null)
+			this.$state.go('rewardList');
 	}
 
 	$onDestroy() {
@@ -38,7 +40,15 @@ class LifetaskRewardCrudController {
 	}
 	/* */
 	/* Public */
-
+	save(){
+		this.$ngRedux.dispatch({ type: 'SAVE_REWARD_CRUD', data: {
+			id: this.id,
+			title: this.title,
+			description: this.description,
+			value: this.value
+		}});
+		this.$state.go('rewardList');
+	}
 	/* */
 
 	/* Private */

@@ -3,6 +3,37 @@ lifetask-task-crud {
 	padding: 16px;
 	height: calc(100% - 32px);
 }
+
+lifetask-task-crud .lifetask-task-card{
+	display: grid;
+	grid-template-rows: 64px auto;
+	grid-template-columns: auto; 
+	grid-template-areas: 
+	"cardHeader"
+	"cardContent";
+	width: 100%;
+	min-height: 256px;
+	border-radius: 5px; 
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.33)
+	
+}
+
+lifetask-task-crud .lifetask-task-card .lifetask-task-card-header{
+	grid-area: cardHeader;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	padding: 0 16px;
+	color: rgb(35, 35, 35);
+	border-bottom: solid 1px rgb(230, 230, 230);
+}
+lifetask-task-crud .lifetask-task-card .lifetask-task-card-content{
+	grid-area: cardContent;
+	font-size: 13px;
+	padding: 16px;
+}
+
 lifetask-task-crud #task-title,
 lifetask-task-crud #task-description,
 lifetask-task-crud #task-reward {
@@ -10,9 +41,12 @@ lifetask-task-crud #task-reward {
 	flex-direction: column;
 	margin-bottom: 16px; 
 }
-
+lifetask-task-crud #task-title,
+lifetask-task-crud #task-description {
+	margin-bottom: 32px;
+}
 lifetask-task-crud .title {
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: 500;
 	letter-spacing: 1px;
 }
