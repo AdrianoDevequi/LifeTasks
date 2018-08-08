@@ -70,17 +70,25 @@ class LifetaskRewardListController {
 					.doc(this.userId)
 					.get();		
 			})
-			.then(res => 
+			.then(res => {
 				this.$ngRedux.dispatch({ type: 'UPDATE_COINS',
 					data: {
-						taskList: res.data().coins
+						coins: res.data().coins
 					}
-				})
-			)
+				});
+				return db.collection('users')
+					.doc(this.userId)
+					.collection('rewardList')
+					.get();
+			})
 			.then(res => 
 				this.$ngRedux.dispatch({ type: 'UPDATE_REWARD_LIST',
 					data: {
-						rewardList: res.data().rewardList
+						rewardList: res.docs.map(doc => 
+							Object.assign({},doc.data(),{
+								id: doc.id
+							})
+						)
 					}
 				})
 			)

@@ -21,7 +21,7 @@ class LifetaskTaskListController {
 		this.__lifetaskBehavior = $ngRedux.connect(behavior =>
 			Object({	
 				userId: behavior.session.id,
-				coins: behavior.task.list,			
+				coins: behavior.session.coins,			
 				taskList: behavior.task.list
 			})
 		)(this);
@@ -57,29 +57,37 @@ class LifetaskTaskListController {
 			.collection('taskList')
 			.doc(task.id)
 			.delete()
-			.then(() => {
+			.then(() => 
 				db.collection('users')
 					.doc(this.userId)
 					.update({
 						coins: this.coins + task.reward
-					});
-			})
-			.then(() => {
+					})
+			)
+			.then(() => 
+				db.collection('users')
+					.doc(this.userId)
+					.get()	
+			)
+			.then(res => {
+				this.$ngRedux.dispatch({ type: 'UPDATE_COINS',
+					data: {
+						coins: res.data().coins
+					}
+				});
 				return db.collection('users')
 					.doc(this.userId)
-					.get();		
+					.collection('taskList')
+					.get();	
 			})
-			.then(res => 
-				this.$ngRedux.dispatch({ type: 'UPDATE_TASK_COINS',
-					data: {
-						taskList: res.data().coins
-					}
-				})
-			)
 			.then(res => 
 				this.$ngRedux.dispatch({ type: 'UPDATE_TASK_LIST',
 					data: {
-						taskList: res.data().taskList
+						taskList: res.docs.map(doc => 
+							Object.assign({},doc.data(),{
+								id: doc.id
+							})
+						)
 					}
 				})
 			)
