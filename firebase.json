@@ -12,8 +12,7 @@
       }
     ],
     "headers": [
-      {
-        "source": "**/service-worker.js",
+      { "source": "**",
         "headers": [
           {
             "Key": "Service-Worker-Allowed",

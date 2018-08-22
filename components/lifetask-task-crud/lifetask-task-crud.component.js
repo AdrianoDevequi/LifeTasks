@@ -32,8 +32,7 @@ class LifetaskTaskCrudController {
 
 	/* Lifecycle */
 	$onInit() {
-		if(this.id === null)
-			this.$state.go('taskList');
+
 	}
 
 	$onDestroy() {
@@ -91,12 +90,12 @@ class LifetaskTaskCrudController {
 				description: this.description,
 				reward: this.reward
 			})
-			.then(() => {
+			.then(() => 
 				db.collection('users')
 					.doc(this.userId)
 					.collection('taskList')
-					.get();
-			})
+					.get()
+			)
 			.then(res => {
 				this.$ngRedux.dispatch({ type: 'UPDATE_TASK_LIST',
 					data: {

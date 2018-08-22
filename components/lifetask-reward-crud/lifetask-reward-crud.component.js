@@ -81,7 +81,7 @@ class LifetaskRewardCrudController {
 		db.collection('users')
 			.doc(this.userId)
 			.collection('rewardList')
-			.doc(this.reward.id)
+			.doc(this.id)
 			.update({
 				title: this.title,
 				description: this.description,

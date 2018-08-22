@@ -41,7 +41,7 @@ class LifetaskRewardListController {
 	addReward(){
 
 		this.$ngRedux.dispatch({type: 'REWARD_CRUD', data: {
-			reward: { title: null, description: null, value: null}
+			reward: { id: null, title: null, description: null, value: null}
 		}});
 		this.$state.go('rewardCrud');
 	}

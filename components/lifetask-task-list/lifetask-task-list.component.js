@@ -40,7 +40,7 @@ class LifetaskTaskListController {
 	/* Public */
 	addTask(){
 		this.$ngRedux.dispatch({type: 'TASK_CRUD', data: {
-			task: { title: null, description: null, reward: null}
+			task: { id: null, title: null, description: null, reward: null }
 		}});
 		this.$state.go('taskCrud');
 	}

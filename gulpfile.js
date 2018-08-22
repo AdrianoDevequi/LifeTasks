@@ -27,7 +27,8 @@ function writeServiceWorkerFile(handleFetch, callback) {
 			handler: 'networkFirst',
 			options: {
 				cache: {
-					name: packageJson.name
+					name: packageJson.name,
+					maxAgeSeconds: 0
 				}
 			}
 		}],
@@ -86,9 +87,20 @@ gulp.task('lint-js', () =>
 gulp.task('create-service-worker', callback =>
 	writeServiceWorkerFile(true, callback)
 );
+
+gulp.task('clean-app', () => 
+	del('./app/www/*', { force: true })
+);
+
+gulp.task('copy-to-app', () =>
+	gulp.src('./build/*', { base: './build/' })
+		.pipe(gulp.dest('./app/www'))
+);
+
 gulp.task('default', () => 
 	runSequence(
 		'clean-build',
+		'clean-app',
 		'npm-dependencies',
 		'copy-manifest',
 		'copy-assets',
@@ -96,7 +108,8 @@ gulp.task('default', () =>
 		'compress-js',
 		'compress-css',
 		'compress-html',
-		'create-service-worker'
+		'create-service-worker',
+		'copy-to-app'
 	)
 );
 
