@@ -32,7 +32,7 @@ function writeServiceWorkerFile(handleFetch, callback) {
 			}
 		}],
 		staticFileGlobs: [
-			'./build/assets/*/.*'
+			'./build/assets/**/*.*'
 		],
 		stripPrefix: './build/',
 		verbose: true
@@ -57,7 +57,7 @@ gulp.task('copy-manifest', () =>
 		.pipe(gulp.dest('./build'))
 );
 gulp.task('compress-js', () =>
-	gulp.src(['/src/*.js','./components/**/*.js'], { base: '.' })
+	gulp.src(['./src/*.js','./components/**/*.js'], { base: '.' })
 		.pipe(babel({ presets: ['env'] }))
 		.pipe(uglify())
 		.pipe(gulp.dest('./build'))
